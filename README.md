@@ -14,9 +14,9 @@ sudo apt-get install python-pandas
 ```
 2) Edit the path in [xbox.py](xbox.py#L37) with your own path to xboxdrv (type which xboxdrv)
 
-3) Run the plot
+3) Run the plot (sudo is needed for xboxdrv)
 ```
-python joystick.py
+sudo python joystick.py
 ```
 
 
