@@ -1,4 +1,4 @@
-# xbox-controller-2D-plot
+# Raspberry Pi XBOX Controller 2D plot
 2D plot of an XBOX controller joystick using Python matplotlib and xboxdrv.
 Run on a Raspberry Pi 3 Model B
 
