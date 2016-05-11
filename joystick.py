@@ -1,11 +1,8 @@
-import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import xbox
-import time
-
-# Setup joystick
-joy = xbox.Joystick()
+#import time
+#import numpy as np
 
 # First set up the figure, the axis, and the plot element we want to animate
 fig = plt.figure()
@@ -19,9 +16,8 @@ def init():
 
 # animation function.  This is called sequentially
 def animate(i):
-    global joy
-    x = [0, np.random.random()*10]
-    y = [0, np.random.random()*10]
+    #x = [0, np.random.random()*10]
+    #y = [0, np.random.random()*10]
     x=[0, joy.leftX()]
     y=[0, joy.leftY()]
     print("LEFT X/Y",joy.leftX(),joy.leftY())
@@ -30,6 +26,13 @@ def animate(i):
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
 anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=200, interval=20, blit=True)
+                               interval=50, blit=True)
 
-plt.show()
+# Setup joystick
+joy = xbox.Joystick()
+
+# Show the plot, close the joystick if something goes wrong
+try:
+    plt.show()
+finally:
+    joy.close()
