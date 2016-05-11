@@ -18,3 +18,6 @@ sudo apt-get install python-pandas
 ```
 python joystick.py
 ```
+
+
+![](https://github.com/cookacounty/xbox-controller-2D-plot/blob/master/2016-05-10%2023_27_37-raspberrypi_0%20-%20VNC%20Viewer.png?raw=true)
