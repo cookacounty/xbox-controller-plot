@@ -2,18 +2,32 @@
 2D plot of an XBOX controller joystick using Python matplotlib and xboxdrv.
 Run on a Raspberry Pi 3 Model B
 
-Python class to control xbox was taken from https://github.com/FRC4564/Xbox
+Python class to control xbox was taken from https://github.com/FRC4564/Xbox and slightly modified to not crash all the time
+
+#### Tested with python 2.7.9 on the Raspberry Pi Raspbian 8.0
 
 # Usage
-1) Install these python packages
+1) Install xboxdrv https://github.com/xboxdrv/xboxdrv
+```
+sudo apt-get install xboxdrv
+```
+2) Install python packages 
 ```
 sudo apt-get install python-matplotlib
 ```
-2) Edit the path in [xbox.py](xbox.py#L37) with your own path to xboxdrv (type which xboxdrv)
-
-3) Run the plot (sudo is needed for xboxdrv)
+3) Setup your env to run Python 2.7
+4) Clone this repository
+```
+cd
+git clone https://github.com/cookacounty/xbox-controller-2D-plot.git
+cd xbox-controller-2D-plot
+```
+5) Run the plot! (sudo is needed for xboxdrv)
 ```
 sudo python plot_xbox.py
+```
+```
+sudo python plot_dual.py
 ```
 
 
