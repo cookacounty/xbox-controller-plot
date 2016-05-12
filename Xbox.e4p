@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric5 project file for project Xbox -->
-<!-- Saved: 2016-05-11, 02:37:58 -->
+<!-- Saved: 2016-05-12, 01:16:01 -->
 <!-- Copyright (C) 2016 Aaron Cook, cookacounty@gmail.com -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -14,21 +14,21 @@
   <Email>cookacounty@gmail.com</Email>
   <Eol index="-1"/>
   <Sources>
-    <Source>__init__.py</Source>
-    <Source>sample.py</Source>
     <Source>xbox.py</Source>
-    <Source>random_data.py</Source>
-    <Source>joystick.py</Source>
-    <Source>sine.py</Source>
-    <Source>pendulum.py</Source>
-    <Source>random_animate.py</Source>
+    <Source>plot_dual.py</Source>
+    <Source>binarynum.py</Source>
+    <Source>test_binnum.py</Source>
+    <Source>plot_xbox.py</Source>
+    <Source>test_sensor3d.py</Source>
+    <Source>plot_sensor3d.py</Source>
+    <Source>sensor3d.py</Source>
   </Sources>
   <Forms/>
   <Translations/>
   <Resources/>
   <Interfaces/>
   <Others/>
-  <MainScript>joystick.py</MainScript>
+  <MainScript>plot_dual.py</MainScript>
   <Vcs>
     <VcsType>None</VcsType>
   </Vcs>
