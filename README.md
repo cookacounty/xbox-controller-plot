@@ -16,6 +16,7 @@ sudo apt-get install xboxdrv
 sudo apt-get install python-matplotlib
 ```
 3) Setup your env to run Python 2.7
+
 4) Clone this repository
 ```
 cd
@@ -26,6 +27,11 @@ cd xbox-controller-2D-plot
 ```
 sudo python plot_xbox.py
 ```
+--or--
+```
+sudo python plot_sensor3d.py
+```
+--or--
 ```
 sudo python plot_dual.py
 ```
