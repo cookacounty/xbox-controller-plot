@@ -14,7 +14,11 @@ class Sensor3D:
         
     def read_angle(self):
         
-        data = self.i2c.read_i2c_block_data(0x60,0x28,8)
+        try:
+            data = self.i2c.read_i2c_block_data(0x60,0x28,8)
+        except:
+            print("I2C Read Failed!")
+            data = [0, 0, 0, 0, 0, 0, 0, 0]
         
         self.xyz = self.parse_xyz(data)
         
