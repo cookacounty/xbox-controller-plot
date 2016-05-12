@@ -33,10 +33,18 @@ class Joystick:
     Usage:
         joy = xbox.Joystick()
     """
-    def __init__(self,refreshRate = 30):
+    def __init__(self, use_ps4=False,refreshRate = 30):
+        
+        #Kill any running xboxdrv processes
         proc = subprocess.Popen(["pkill", "xboxdrv"], stdout=subprocess.PIPE)
         proc.wait()
-        self.proc = subprocess.Popen(['xboxdrv','--no-uinput'], stdout=subprocess.PIPE)
+        
+        if use_ps4:
+            cmd_str = ['xboxdrv','-c', 'ps4_usb.xboxdrv']
+        else:
+            cmd_str=['xboxdrv','--no-uinput']
+        
+        self.proc = subprocess.Popen(cmd_str, stdout=subprocess.PIPE)
         self.pipe = self.proc.stdout
         #
         self.connectStatus = False  #will be set to True once controller is detected and stays on
