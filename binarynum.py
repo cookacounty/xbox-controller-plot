@@ -6,6 +6,13 @@ Binary Number Manipulation
 class BinaryNum:
 
     def __init__(self, integer_val, si=1, wl=8, fl=0):
+        """
+            BinaryNum(integer_val)
+            integer_val - An integer value that is valid for the specified wordlength
+            si (optional default=1)- Signed (0 = unsigned 1 = signed) 
+            wl (optional default=8) - WordLength (number of bits)
+            fl  (optional default=0) - Fractional Length (where is the decimal point)
+        """
         
         self.dec = integer_val
         self.si = si
@@ -18,6 +25,7 @@ class BinaryNum:
         
     def check(self):
         """Check input arguments make sense"""
+        
         # Check that sign is 1 or 0
         if not (self.si==0 or self.si==1):
             raise Exception("Sign must be 1 or 0")
@@ -47,6 +55,8 @@ class BinaryNum:
         return (rwv)
     
     def to_bin(self):
+        """Create Binary String from decimal value"""
+        
         bin_value = bin(self.dec)[2:] # The 0b is dropped
         # Zero pad
         bin_value = '{:0>{}}'.format(bin_value,self.wl)
@@ -70,6 +80,11 @@ class BinaryNum:
         return bnew
         
     def concat(b2, b1,  si=0,  fl=0):
+        """
+            Concatenate two BinaryNum objects. 
+            This is the same behavior as the verilog concat operator
+            {'1000','1010'} -> '100010101'
+        """
         
         if not isinstance(b1, BinaryNum) or not isinstance(b2, BinaryNum):
             raise Exception("Inputs to concat must be of class BinaryNum")

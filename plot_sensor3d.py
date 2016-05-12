@@ -1,3 +1,7 @@
+"""
+Plot I2C 3D Sensor Data
+"""
+
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import sensor3d as s3d

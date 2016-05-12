@@ -1,3 +1,6 @@
+"""
+Plot Controller and 3D Sensor Data
+"""
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import matplotlib.animation as animation

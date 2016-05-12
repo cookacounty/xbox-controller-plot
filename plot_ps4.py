@@ -1,3 +1,6 @@
+"""
+Plot PS4 Left Thumbstick
+"""
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import xbox

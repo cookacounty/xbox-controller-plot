@@ -1,3 +1,7 @@
+"""
+Class to interact with I2C 3D Sensor
+"""
+
 import smbus
 import binarynum as bn
 
