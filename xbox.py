@@ -34,6 +34,8 @@ class Joystick:
         joy = xbox.Joystick()
     """
     def __init__(self,refreshRate = 30):
+        proc = subprocess.Popen(["pkill", "xboxdrv"], stdout=subprocess.PIPE)
+        proc.wait()
         self.proc = subprocess.Popen(['/home/pi/Xbox/xboxdrv','--no-uinput'], stdout=subprocess.PIPE)
         self.pipe = self.proc.stdout
         #
@@ -45,7 +47,7 @@ class Joystick:
         #
         # Read responses from 'xboxdrv' for 2 secs, looking for controller/receiver to respond
         found = False
-        waitTime = time.time() + 5.0
+        waitTime = time.time() + 2.0
         while waitTime > time.time():
             readable, writeable, exception = select.select([self.pipe],[],[],0)
             if readable:
@@ -99,25 +101,25 @@ class Joystick:
         return self.connectStatus
 
     # Left stick X axis value scaled between -1.0 (left) and 1.0 (right) with deadzone tolerance correction
-    def leftX(self,deadzone=4000):
+    def leftX(self,deadzone=0):
         self.refresh()
         raw = int(self.reading[3:9])
         return self.axisScale(raw,deadzone)
 
     # Left stick Y axis value scaled between -1.0 (down) and 1.0 (up)
-    def leftY(self,deadzone=4000):
+    def leftY(self,deadzone=0):
         self.refresh()
         raw = int(self.reading[13:19])
         return self.axisScale(raw,deadzone)
 
     # Right stick X axis value scaled between -1.0 (left) and 1.0 (right)
-    def rightX(self,deadzone=4000):
+    def rightX(self,deadzone=0):
         self.refresh()
         raw = int(self.reading[24:30])
         return self.axisScale(raw,deadzone)
 
     # Right stick Y axis value scaled between -1.0 (down) and 1.0 (up)
-    def rightY(self,deadzone=4000):
+    def rightY(self,deadzone=0):
         self.refresh()
         raw = int(self.reading[34:40])
         return self.axisScale(raw,deadzone)
@@ -221,14 +223,14 @@ class Joystick:
     # Returns tuple containing X and Y axis values for Left stick scaled between -1.0 to 1.0
     # Usage:
     #     x,y = joy.leftStick()
-    def leftStick(self,deadzone=4000):
+    def leftStick(self,deadzone=0):
         self.refresh()
         return (self.leftX(deadzone),self.leftY(deadzone))
 
     # Returns tuple containing X and Y axis values for Right stick scaled between -1.0 to 1.0
     # Usage:
     #     x,y = joy.rightStick() 
-    def rightStick(self,deadzone=4000):
+    def rightStick(self,deadzone=0):
         self.refresh()
         return (self.rightX(deadzone),self.rightY(deadzone))
 
