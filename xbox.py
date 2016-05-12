@@ -36,7 +36,7 @@ class Joystick:
     def __init__(self,refreshRate = 30):
         proc = subprocess.Popen(["pkill", "xboxdrv"], stdout=subprocess.PIPE)
         proc.wait()
-        self.proc = subprocess.Popen(['/home/pi/Xbox/xboxdrv','--no-uinput'], stdout=subprocess.PIPE)
+        self.proc = subprocess.Popen(['xboxdrv','--no-uinput'], stdout=subprocess.PIPE)
         self.pipe = self.proc.stdout
         #
         self.connectStatus = False  #will be set to True once controller is detected and stays on
