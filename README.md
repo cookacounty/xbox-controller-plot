@@ -29,6 +29,10 @@ sudo python plot_xbox.py
 ```
 --or--
 ```
+sudo python plot_ps4.py
+```
+--or--
+```
 sudo python plot_sensor3d.py
 ```
 --or--
