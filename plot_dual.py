@@ -95,6 +95,10 @@ joy1 = s3d.Sensor3D(i2c_addr)
 # Setup joystick 2
 joy2 = xbox.Joystick()
 
+# Fullsecreen
+mng = plt.get_current_fig_manager()
+mng.full_screen_toggle()
+
 # Show the plot, close the joystick if something goes wrong
 try:
     plt.show()

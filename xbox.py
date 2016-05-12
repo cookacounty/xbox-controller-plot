@@ -38,6 +38,8 @@ class Joystick:
         #Kill any running xboxdrv processes
         proc = subprocess.Popen(["pkill", "xboxdrv"], stdout=subprocess.PIPE)
         proc.wait()
+        proc = subprocess.Popen(["rmmod", "xpad"], stdout=subprocess.PIPE)
+        proc.wait()
         
         if use_ps4:
             cmd_str = ['xboxdrv','-c', 'ps4_usb.xboxdrv']
