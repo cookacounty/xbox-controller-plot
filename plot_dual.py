@@ -9,10 +9,10 @@ import xbox
 class SubplotAnimation(animation.TimedAnimation):
     def __init__(self):
         fig = plt.figure(figsize=(10,4))
-        a1_z   = fig.add_subplot(1, 12, 1)
-        a1_xy = fig.add_subplot(1, 12, (3, 5))
-        a2_z   = fig.add_subplot(1, 12, 7)
-        a2_xy = fig.add_subplot(1, 12, (9, 11))
+        a1_z   = fig.add_subplot(1, 11, 1)
+        a1_xy = fig.add_subplot(1, 11, (3, 5))
+        a2_z   = fig.add_subplot(1, 11, 7)
+        a2_xy = fig.add_subplot(1, 11, (9, 11))
         
         plt.setp(a1_z.get_xticklabels(), visible=False)
         plt.setp(a2_z.get_xticklabels(), visible=False)
