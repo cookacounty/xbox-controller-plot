@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric5 project file for project Xbox -->
-<!-- Saved: 2016-05-12, 01:16:01 -->
+<!-- Saved: 2016-05-12, 02:38:41 -->
 <!-- Copyright (C) 2016 Aaron Cook, cookacounty@gmail.com -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -22,6 +22,7 @@
     <Source>test_sensor3d.py</Source>
     <Source>plot_sensor3d.py</Source>
     <Source>sensor3d.py</Source>
+    <Source>plot_ps4.py</Source>
   </Sources>
   <Forms/>
   <Translations/>
