@@ -38,45 +38,27 @@ class Joystick:
         #Kill any running xboxdrv processes
         proc = subprocess.Popen(["pkill", "xboxdrv"], stdout=subprocess.PIPE)
         proc.wait()
-        proc = subprocess.Popen(["rmmod", "xpad"], stdout=subprocess.PIPE)
-        proc.wait()
         
-        if use_ps4:
-            cmd_str = ['xboxdrv','-c', 'ps4_usb.xboxdrv']
+        self.use_ps4 = use_ps4
+        self.connect()
+        self.refreshTime = 0        #absolute time when next refresh (read results from xboxdrv stdout pipe) is to occur
+        self.refreshDelay = 1.0 / refreshRate   #joystick refresh is to be performed 30 times per sec by default
+
+            
+    def connect(self):
+        
+        if self.use_ps4:
+            cmd_str = ['xboxdrv','-c', 'ps4_usb.xboxdrv', '--detach-kernel-driver']
         else:
-            cmd_str=['xboxdrv','--no-uinput']
-        
+            cmd_str=['xboxdrv','--no-uinput', '--detach-kernel-driver']
+                
         self.proc = subprocess.Popen(cmd_str, stdout=subprocess.PIPE)
         self.pipe = self.proc.stdout
         #
         self.connectStatus = False  #will be set to True once controller is detected and stays on
         self.reading = '0' * 140    #initialize stick readings to all zeros
-        #
-        self.refreshTime = 0        #absolute time when next refresh (read results from xboxdrv stdout pipe) is to occur
-        self.refreshDelay = 1.0 / refreshRate   #joystick refresh is to be performed 30 times per sec by default
-        #
-        # Read responses from 'xboxdrv' for 2 secs, looking for controller/receiver to respond
-        found = False
-        waitTime = time.time() + 2.0
-        while waitTime > time.time():
-            readable, writeable, exception = select.select([self.pipe],[],[],0)
-            if readable:
-                response = self.pipe.readline()
-                # Hard fail if we see this, so force an error
-                if response[0:7] == 'No Xbox':
-                    raise IOError('No Xbox controller/receiver found')
-                # Success if we see the following
-                if response[0:10] == 'Press Ctrl':
-                    found = True
-                # If we see 140 char line, we are seeing valid input
-                if len(response) == 140:
-                    found = True
-                    self.reading = response
-        # if the controller wasn't found, then halt
-        if not found:
-            self.close()
-            raise IOError('Unable to detect Xbox controller/receiver - Run python as sudo')
 
+            
     """Used by all Joystick methods to read the most recent events from xboxdrv.
     The refreshRate determines the maximum frequency with which events are checked.
     If a valid event response is found, then the controller is flagged as 'connected'.
@@ -93,7 +75,9 @@ class Joystick:
                     response = self.pipe.readline()
                     # A zero length response means controller has been unplugged.
                     if len(response) == 0:
-                        raise IOError('Xbox controller disconnected from USB')
+                        time.sleep(0.01)
+                        self.close()
+                        self.connect()
                     readable, writeable, exception = select.select([self.pipe],[],[],0)
                 # Valid controller response will be 140 chars.  
                 if len(response) == 140:
@@ -246,4 +230,5 @@ class Joystick:
 
     # Cleanup by ending the xboxdrv subprocess
     def close(self):
+        self.proc.kill()
         os.system('pkill xboxdrv')
