@@ -23,8 +23,8 @@ def animate(i):
     #x = [0, np.random.random()*10]
     #y = [0, np.random.random()*10]
     joy.read_angle()
-    x=[0, joy.x]
-    y=[0, joy.y]
+    x=[0, joy.x*2]
+    y=[0, joy.y*2]
     print("LEFT X/Y",joy.x,joy.y)
     line.set_data(x,y)
     return line,

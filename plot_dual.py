@@ -13,9 +13,12 @@ class SubplotAnimation(animation.TimedAnimation):
     def __init__(self):
         fig = plt.figure(figsize=(10,4))
         a1_z   = fig.add_subplot(1, 11, 1)
-        a1_xy = fig.add_subplot(1, 11, (3, 5))
+        a1_xy = fig.add_subplot(1, 11, (2, 6))
         a2_z   = fig.add_subplot(1, 11, 7)
-        a2_xy = fig.add_subplot(1, 11, (9, 11))
+        a2_xy = fig.add_subplot(1, 11, (8, 12))
+        plt.tight_layout()
+        fig.suptitle("3D Sensor and Xbox Controller Demo", fontsize=18)
+
         
         plt.setp(a1_z.get_xticklabels(), visible=False)
         plt.setp(a2_z.get_xticklabels(), visible=False)
@@ -60,8 +63,8 @@ class SubplotAnimation(animation.TimedAnimation):
 
     def _draw_frame(self, framedata):
         joy1.read_angle()
-        x1=[0, joy1.x]
-        y1=[0, joy1.y]
+        x1=[0, joy1.x*2]
+        y1=[0, joy1.y*2]
         z1x=[0, 0]
         z1y=[0, joy1.z]
         
@@ -97,7 +100,8 @@ joy2 = xbox.Joystick()
 
 # Fullsecreen
 mng = plt.get_current_fig_manager()
-mng.full_screen_toggle()
+mng.resize(*mng.window.maxsize())
+#mng.full_screen_toggle()
 
 # Show the plot, close the joystick if something goes wrong
 try:
